@@ -4,9 +4,9 @@ import { ReactComponent as StudioIcon } from '../assets/studio-wallpaper.svg';
 const MovieHeader: React.FC = () => {
   return (
     <header>
-      <div className="flex flex-col items-center">
-        <StudioIcon className="w-78 h-80" /> 
-        <h1 className="style-normal font-nobel regular sans-serif text-4xl">GALLERY</h1>
+      <div className="flex flex-col items-center text-center">
+        <StudioIcon className="w-full max-w-[300px] h-auto" /> 
+        <h1 className="font-nobel text-3xl mt-4">GALLERY</h1>
       </div>
 
       {/* Subtítulo */}
