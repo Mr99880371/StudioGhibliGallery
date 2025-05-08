@@ -6,4 +6,7 @@ export interface Movie {
     producer: string;
     release_date: string;
     rt_score: string;
-    ru
+    running_time: string;
+    image: string;
+  }
+  
