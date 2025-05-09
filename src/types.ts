@@ -9,4 +9,12 @@ export interface Movie {
     running_time: string;
     image: string;
   }
+  export interface UserMovieState {
+    [id: string]: {
+      watched?: boolean;
+      favorite?: boolean;
+      notes?: string;
+      rating?: number;
+    };
+  }
   
