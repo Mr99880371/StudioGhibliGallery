@@ -60,7 +60,7 @@ const FilterControls: React.FC = () => {
       <select
         value={sortBy}
         onChange={(e) => dispatch(setSortBy(e.target.value))}
-        className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="default">Default</option>
         <option value="title-asc">Title (A-Z)</option>
