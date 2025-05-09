@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../stores/index.ts';
+import { RootState } from '../stores/index';
 import {
   toggleWatched,
   toggleFavorites,
   toggleWithNotes,
   setRating,
   setSortBy,
-} from '../stores/filterSlice.ts';
+} from '../stores/filterSlice';
 
 const FilterControls: React.FC = () => {
   const dispatch = useDispatch();

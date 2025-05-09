@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import MovieHeader from '../components/movieHeader.tsx';
+import MovieHeader from '../components/movieHeader';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovies } from '../stores/movieSlice.ts';
-import { RootState } from '../stores/index.ts';
-import MovieCard from '../components/movieCard.tsx';
-import FilterControls from '../components/filterControls.tsx';
-import SearchBar from '../components/searchBar.tsx';
-import { clearFilters, setSortBy } from '../stores/filterSlice.ts';
+import { getMovies } from '../stores/movieSlice';
+import { RootState } from '../stores/index';
+import MovieCard from '../components/movieCard';
+import FilterControls from '../components/filterControls';
+import SearchBar from '../components/searchBar';
+import { clearFilters, setSortBy } from '../stores/filterSlice';
 
 const Gallery: React.FC = () => {
   const dispatch = useDispatch();

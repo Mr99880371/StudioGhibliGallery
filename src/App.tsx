@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
-import Gallery from './pages/gallery.tsx';
+import Gallery from './pages/gallery';
 import { Provider } from 'react-redux';
-import { store, persistor } from './stores/index.ts';
+import { store, persistor } from './stores/index';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <div className="App">
           <Gallery />
         </div>
+        <ToastContainer position="bottom-right" autoClose={3000} />
       </PersistGate>
     </Provider>
   );

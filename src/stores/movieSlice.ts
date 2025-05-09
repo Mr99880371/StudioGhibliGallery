@@ -1,16 +1,18 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Movie } from "../types";
-import { fetchMovies } from "../services/movieService.ts";
+import { Movie, UserMovieState } from "../types";
+import { fetchMovies } from "../services/movieService";
 import { PayloadAction } from "@reduxjs/toolkit";
 
 interface MovieState {
   movies: Movie[];
+  userMovies: UserMovieState;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: MovieState = {
   movies: [],
+  userMovies: {},
   loading: false,
   error: null,
 };
@@ -25,15 +27,15 @@ const movieSlice = createSlice({
   reducers: {
     toggleWatched: (state, action: PayloadAction<string>) => {
       const movie = state.movies.find(m => m.id === action.payload);
-      if (movie) movie.watched = !movie.watched;
+      if (movie) state.userMovies[movie.id].watched = !state.userMovies[movie.id].watched;
     },
     toggleFavorite: (state, action: PayloadAction<string>) => {
       const movie = state.movies.find(m => m.id === action.payload);
-      if (movie) movie.favorite = !movie.favorite;
+      if (movie) state.userMovies[movie.id].favorite = !state.userMovies[movie.id].favorite;
     },
     addNote: (state, action: PayloadAction<{ id: string; note: string }>) => {
       const movie = state.movies.find(m => m.id === action.payload.id);
-      if (movie) movie.notes = action.payload.note;
+      if (movie) state.userMovies[movie.id].notes = action.payload.note;
     }
   },
   extraReducers: (builder) => {

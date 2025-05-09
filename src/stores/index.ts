@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // usa localStorage
-import movieReducer from "./movieSlice.ts";
-import userMovieReducer from "./movieInteraction.ts"; // nosso slice com favoritos etc.
-import filterReducer from "./filterSlice.ts";
+import movieReducer from "./movieSlice";
+import userMovieReducer from "./movieInteraction"; // nosso slice com favoritos etc.
+import filterReducer from "./filterSlice";
 
 const rootReducer = combineReducers({
   movies: movieReducer,

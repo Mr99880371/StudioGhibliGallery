@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearch, toggleIncludeSynopsis } from '../stores/filterSlice.ts';
-import { RootState } from '../stores/index.ts';
+import { setSearch, toggleIncludeSynopsis } from '../stores/filterSlice';
+import { RootState } from '../stores/index';
 
 const SearchBar: React.FC = () => {
   const dispatch = useDispatch();
