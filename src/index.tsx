@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/base.css';
-import './styles/gallery.css';
-import './styles/filterControls.css';
-import './styles/movieCard.css';
-import './styles/movieHeader.css';
-import './styles/searchBar.css';
-import './styles/notesModal.css';
-import './styles/ratingFilterDrop.css';
+import './styles/pages/gallery.css';
+import './styles/components/filterControls.css';
+import './styles/components/movieCard.css';
+import './styles/components/movieHeader.css';
+import './styles/components/searchBar.css';
+import './styles/components/notesModal.css';
+import './styles/components/ratingFilterDrop.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
