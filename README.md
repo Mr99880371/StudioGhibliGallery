@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# 🎥 Catálogo de Filmes do Studio Ghibli
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é um catálogo interativo para listar e avaliar os filmes do Studio Ghibli. Além de visualizar informações completas dos filmes, o usuário pode marcar favoritos, assistidos, adicionar anotações e avaliações pessoais, além de aplicar filtros e ordenações dinâmicas.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Instalação e Execução
 
-### `npm start`
+```bash
+git clone https://github.com/Mr99880371/StudioGhibliGallery.git
+cd StudioGhibliGallery
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Instalar dependências
+npm install
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Iniciar servidor local
+npm start
+```
 
-### `npm test`
+> Acesse em `http://localhost:3000`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🛠️ Stack Utilizada
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ⚛️ **React**
+- 💙 **TypeScript**
+- 🧠 **Redux** (gerenciamento global de estado)
+- 🌬 **Tailwind CSS**
+- 🔁 **Axios** (requisições HTTP)
+- 🧪 **Jest** (testes unitários)
+- 🌐 **API Restful**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ✅ Funcionalidades Implementadas
 
-### `npm run eject`
+### ✅ Obrigatórias
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 📌 Listar filmes com:
+  - 🎞 Imagem
+  - 🎬 Título
+  - 🗓 Ano de lançamento
+  - ⏱ Duração
+  - 📝 Sinopse
+  - 👤 Diretor e Produtor
+  - ⭐ Nota de avaliação (`rt_score`)
+- ✅ Marcar filme como **assistido**
+- ❤️ Marcar filme como **favorito**
+- 🔎 Filtrar filmes por **título**
+- 📚 Buscar palavras na **sinopse** (com destaque visual)
+- 📝 Adicionar **anotações**
+- 🌟 Avaliação pessoal (1 a 5 estrelas)
+- 🧮 Filtros adicionais:
+  - Assistido / Favorito / Com anotação / Estrelas
+- 🔃 Ordenações dinâmicas:
+  - Título, Duração, Avaliação pessoal, Nota `rt_score`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### ✨ Desejáveis
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ✅ Utilizar **TypeScript**
+- 📱 Responsividade básica
+- 🔔 Mensagens toast para ações:
+  - Marcar/desmarcar como assistido/favorito
+  - Adicionar/editar/remover anotações
+- 🧪 Teste unitário (ex: botão de favorito)
+- 📦 Separação de responsabilidades (componentes, serviços)
+- 🧰 Estilização com **Tailwind**
+- 🌐 Estado global com **Redux**
+- 🔄 Axios para controle assíncrono
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🧪 Testes com Jest
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Este projeto utiliza **Jest** para testes unitários.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Executar testes:
 
-### Code Splitting
+```bash
+npm test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> Os testes estão organizados próximos aos componentes (`*.test.tsx`) ou em `/__tests__/`
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📂 Estrutura de Pastas
 
-### Making a Progressive Web App
+```bash
+src/
+├── __tests__/      # Testes unitários
+├── assets/         # Imagens e arquivos estáticos     
+├── components/     # Componentes reutilizáveis        
+├── pages/          # Páginas principais
+├── services/       # APIs e chamadas HTTP
+├── store/          # Redux: slices e configurações
+├── styles/         # Estilos e Tailwind config
+└── types.ts        # Definições TypeScript
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## 🌸 Sobre o Studio Ghibli
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Este projeto consome dados da [API pública do Studio Ghibli](https://ghibliapi.vercel.app/), com o intuito de prestar homenagem aos filmes e proporcionar uma experiência enriquecedora de organização, avaliação e admiração por suas obras.
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🧑‍🎓 Developed by
 
-### `npm run build` fails to minify
+Mariane A Justino
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+GitHub: https://github.com/Mr99880371
+LinkedIn: https://www.linkedin.com/in/mariane-justino/
