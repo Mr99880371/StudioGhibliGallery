@@ -1,0 +1,30 @@
+/* === Rating Filter Drop Styles === */
+.rating-filter-drop-container {
+    @apply relative;
+}
+
+.rating-filter-drop-container-button {
+    @apply flex items-center gap-1 transition;
+}
+
+.rating-filter-drop-container-dropdown-div {
+    @apply z-30 mt-2 bg-white border rounded-lg shadow w-56;
+}
+
+.rating-filter-drop-container-dropdown-div-p {
+    @apply px-4 py-2 text-sm font-semibold text-gray-700;
+}
+
+.rating-filter-drop-container-dropdown-div-ul {
+    @apply text-sm text-gray-700;
+}
+
+.rating-filter-drop-container-dropdown-div-ul-li {
+    @apply w-full text-left px-4 py-2 hover:bg-gray-100;
+}
+
+.rating-filter-drop-container-dropdown-div-ul-li-button {
+    @apply w-full text-left px-4 py-2 hover:bg-gray-100;
+}
+    
+    

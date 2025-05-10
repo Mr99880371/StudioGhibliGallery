@@ -48,6 +48,15 @@ const filterSlice = createSlice({
     setSortBy: (state, action: PayloadAction<string>) => {
       state.sortBy = action.payload;
     },
+    setWatched: (state, action: PayloadAction<boolean>) => {
+      state.watched = action.payload;
+    },
+    setFavorites: (state, action: PayloadAction<boolean>) => {
+      state.favorites = action.payload;
+    },
+    setWithNotes: (state, action: PayloadAction<boolean>) => {
+      state.withNotes = action.payload;
+    },
     clearFilters: (state) => {
       state.watched = false;
       state.favorites = false;
@@ -70,6 +79,9 @@ export const {
   toggleIncludeSynopsis,
   setSortBy,
   clearFilters,
+  setWatched,
+  setFavorites,
+  setWithNotes,
 } = filterSlice.actions;
 
 // Exporta o reducer

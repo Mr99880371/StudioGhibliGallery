@@ -1,0 +1,37 @@
+/* === Movie Card Styles === */
+.movie-card-container {
+    @apply p-4 bg-white rounded-lg shadow-lg flex flex-col text-left;
+}
+
+.movie-note-poster {
+    @apply absolute top-2 left-2 z-10 flex flex-col gap-1;
+}
+
+.movie-note-poster-span {
+    @apply bg-blue-600 text-white text-xs px-2 py-0.5 rounded;
+}
+
+.movie-rating-poster-span {
+    @apply bg-yellow-300 text-gray-800 text-xs px-2 py-0.5 rounded;
+}
+
+.movie-poster-full {
+    @apply w-full h-full object-cover transition-transform duration-300;
+}
+
+.movie-poster-full:hover {
+    @apply group-hover:scale-105;
+}
+
+.movie-poster-title-container {
+    @apply absolute inset-0 bg-black bg-opacity-60 opacity-0 flex items-center justify-center transition-opacity duration-300;
+}
+
+.movie-poster-title-container:hover {
+    @apply group-hover:opacity-100;
+}
+
+.movie-poster-title-container-p {
+    @apply text-white font-medium text-lg px-2 text-center;
+}
+    

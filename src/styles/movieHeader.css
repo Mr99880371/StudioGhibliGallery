@@ -1,0 +1,16 @@
+/* === Movie Header Styles === */
+.movie-header-container {
+    @apply flex flex-col items-center text-center;
+}
+
+.movie-header-container-studio-icon {
+    @apply w-full max-w-[300px] h-auto;
+}
+
+.movie-header-container-title {
+    @apply text-3xl mt-4;
+}
+
+.movie-header-container-subtitle {
+    @apply text-lg text-gray-600 text-center max-w-2xl mx-auto mt-6;
+}

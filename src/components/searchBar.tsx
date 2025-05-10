@@ -13,25 +13,25 @@ const SearchBar: React.FC = () => {
   const includeSynopsis = useSelector((state: RootState) => state.filters.includeSynopsis);
 
   return (
-    <div className="w-full">
+    <div className="search-bar-container">
       {/* Input de busca */}
       <input
         type="text"
         placeholder="Search movies..."
         value={search}
         onChange={(e) => dispatch(setSearch(e.target.value))}
-        className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="search-bar-container-input"
       />
 
       {/* Checkbox para buscar na sinopse */}
-      <div className="mt-3 ml-1 flex items-center gap-2">
+      <div className="search-bar-container-checkbox">
         <input
           type="checkbox"
           id="includeSynopsis"
           checked={includeSynopsis}
           onChange={() => dispatch(toggleIncludeSynopsis())}
         />
-        <label htmlFor="includeSynopsis" className="text-sm text-gray-700">
+        <label htmlFor="includeSynopsis" className="search-bar-container-checkbox-label">
           Include synopsis in search
         </label>
       </div>

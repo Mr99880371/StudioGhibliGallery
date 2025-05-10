@@ -1,0 +1,52 @@
+/* === Notes Modal Styles === */
+.notes-modal-container {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50;
+}
+
+.notes-modal-container-div {
+    @apply bg-white p-6 rounded w-full max-w-md;
+}
+
+.notes-modal-container-movie-title {
+    @apply text-xl font-semibold mb-4;
+}
+
+.notes-modal-container-your-rating {
+    @apply block mb-2 font-medium;
+}
+
+.notes-modal-container-stars {
+    @apply text-2xl cursor-pointer;
+}   
+
+.notes-modal-container-span-rated {
+    @apply ml-2 text-sm text-gray-500;
+}
+
+.notes-modal-container-your-notes {
+    @apply block mb-2 font-medium;
+}
+
+.notes-modal-container-textarea {
+    @apply w-full border rounded p-2 mb-2;
+}
+
+.notes-modal-container-error {
+    @apply text-red-500 text-sm;
+}
+
+.notes-modal-container-div-button {
+    @apply flex justify-end gap-2 mt-4;
+}
+
+.notes-modal-container-button-cancel {
+    @apply px-4 py-2 bg-gray-200 rounded;
+}
+
+.notes-modal-container-button-save {
+    @apply px-4 py-2 bg-blue-500 text-white rounded;
+}
+
+.notes-modal-movie-upd-toast {
+    @apply text-sm text-gray-500;
+}

@@ -39,32 +39,42 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
   // Salva as notas e fecha o modal
   const handleSubmit = () => {
     const trimmedNote = note.trim();
-
+  
+    const noteChanged = trimmedNote !== savedNote.trim();
+    const ratingChanged = rating !== savedRating;
+  
     if (!trimmedNote && rating === 0) {
       setError('Please provide a rating or note.');
       return;
     }
-
+  
+    // Se nada foi alterado, não faz nada
+    if (!noteChanged && !ratingChanged) {
+      onClose();
+      return;
+    }
+  
     dispatch(setNoteRedux({ id: movieId, notes: trimmedNote }));
     dispatch(setRatingRedux({ id: movieId, rating }));
-
+  
+    // Só exibe o toast se algo tiver sido alterado
     toast(
       <div>
         <p className="font-semibold">
-          {trimmedNote
-            ? (rating ? '📝 Note and Rating saved' : '📝 Note saved')
-            : '🗑️ Note removed'}
+          {noteChanged
+            ? (ratingChanged ? '📝 Note and Rating saved' : '📝 Note saved')
+            : '⭐ Rating saved'}
         </p>
-        <p className="text-sm text-gray-500">{movieTitle} has been updated</p>
+        <p className="notes-modal-movie-upd-toast">{movieTitle} has been updated</p>
       </div>,
       {
         style: {
-          borderLeft: `4px solid ${trimmedNote ? '#3b82f6' : '#9ca3af'}`,
+          borderLeft: `4px solid ${noteChanged ? '#3b82f6' : '#facc15'}`, // azul para nota, amarelo para só rating
           backgroundColor: '#fff',
         },
       }
     );
-
+  
     // Limpa e fecha
     setRating(0);
     setNote('');
@@ -77,36 +87,36 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-6 rounded w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">Add Notes for {movieTitle}</h2>
+    <div className="notes-modal-container">
+      <div className="notes-modal-container-div">
+        <h2 className="notes-modal-container-movie-title">Add Notes for {movieTitle}</h2>
 
-        <label className="block mb-2 font-medium">Your Rating:</label>
+        <label className="notes-modal-container-your-rating">Your Rating:</label>
         <div className="flex mb-4">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
               key={star}
-              className={`text-2xl cursor-pointer ${star <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
+              className={`notes-modal-container-stars ${star <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
               onClick={() => setRating(star)}
             >
               ★
             </span>
           ))}
-          <span className="ml-2 text-sm text-gray-500">{rating ? `${rating}/5` : 'Not rated'}</span>
+          <span className="notes-modal-container-span-rated">{rating ? `${rating}/5` : 'Not rated'}</span>
         </div>
 
-        <label className="block mb-2 font-medium">Your Notes:</label>
+        <label className="notes-modal-container-your-notes">Your Notes:</label>
         <textarea
-          className="w-full border rounded p-2 mb-2"
+          className="notes-modal-container-textarea"
           placeholder="Write your thoughts about this movie..."
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && <p className="notes-modal-container-error">{error}</p>}
 
-        <div className="flex justify-end gap-2 mt-4">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-200 rounded">Cancel</button>
-          <button onClick={handleSubmit} className="px-4 py-2 bg-blue-500 text-white rounded">Save Notes</button>
+        <div className="notes-modal-container-div-button">
+          <button onClick={onClose} className="notes-modal-container-button-cancel">Cancel</button>
+          <button onClick={handleSubmit} className="notes-modal-container-button-save">Save Notes</button>
         </div>
       </div>
     </div>

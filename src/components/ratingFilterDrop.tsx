@@ -11,7 +11,7 @@ const RatingFilterDrop: React.FC = () => {
 
   // Função para estilizar o botão
   const getButtonStyle = () =>
-    `flex items-center gap-1 transition ${
+    `rating-filter-drop-container-button ${
       rating !== null ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'
     }`;
 
@@ -25,7 +25,7 @@ const RatingFilterDrop: React.FC = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="rating-filter-drop-container">
       {/* Botão do dropdown */}
       <button onClick={toggleDropdown} className={getButtonStyle()}>
         <StarIcon className="w-5 h-5" />
@@ -34,15 +34,15 @@ const RatingFilterDrop: React.FC = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute z-10 mt-2 bg-white border rounded-lg shadow w-56">
+        <div className="rating-filter-drop-container-dropdown-div absolute">
           {/* Título do dropdown */}
-          <p className="px-4 py-2 text-sm font-semibold text-gray-700">Filter by your rating</p>
-          <ul className="text-sm text-gray-700">
+          <p className="rating-filter-drop-container-dropdown-div-p">Filter by your rating</p>
+          <ul className="rating-filter-drop-container-dropdown-div-ul">
             {/* Opção para todos os filmes */}
             <li>
               <button
                 onClick={() => handleSelect(null)}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="rating-filter-drop-container-dropdown-div-ul-li"
               >
                 • All Movies
               </button>
@@ -51,7 +51,7 @@ const RatingFilterDrop: React.FC = () => {
             <li>
               <button
                 onClick={() => handleSelect(0)}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="rating-filter-drop-container-dropdown-div-ul-li-button"
               >
                 Unrated
               </button>
@@ -61,7 +61,7 @@ const RatingFilterDrop: React.FC = () => {
               <li key={star}>
                 <button
                   onClick={() => handleSelect(star)}
-                  className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                  className="rating-filter-drop-container-dropdown-div-ul-li-button"
                 >
                   {star} Star{star > 1 && 's'} {'⭐'.repeat(star)}
                 </button>

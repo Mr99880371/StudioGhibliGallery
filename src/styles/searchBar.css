@@ -1,0 +1,16 @@
+/* === Search Bar Styles === */
+.search-bar-container {
+    @apply w-full;
+}
+
+.search-bar-container-input {
+    @apply w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.search-bar-container-checkbox {
+    @apply mt-3 ml-1 flex items-center gap-2;
+}
+
+.search-bar-container-checkbox-label {
+    @apply text-sm text-gray-700;
+}

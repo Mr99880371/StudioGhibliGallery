@@ -18,31 +18,31 @@ const FilterControls: React.FC = () => {
   );
 
   return (
-    <div className="flex flex-col sm:flex-row sm:justify-between w-full gap-4">
+    <div className="filter-controls-container">
       {/* Filtros com emojis */}
-      <div className="flex flex-wrap items-center gap-4 text-gray-700 text-sm">
+      <div className="filter-controls-wrap">
         <span className="font-semibold">Filters:</span>
 
         <button
           onClick={() => dispatch(toggleWatched())}
-          className={`flex items-center gap-1 transition ${
-            watched ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'
+          className={`watched-button ${
+            watched ? 'watched-button:watched' : 'watched-button:hover'
           }`}
         >
           👁 Watched
         </button>
         <button
           onClick={() => dispatch(toggleFavorites())}
-          className={`flex items-center gap-1 transition ${
-            favorites ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'
+          className={`favorites-button ${
+            favorites ? 'favorites-button:favorites' : 'favorites-button:hover'
           }`}
         >
           ❤️ Favorites
         </button>
         <button
           onClick={() => dispatch(toggleWithNotes())}
-          className={`flex items-center gap-1 transition ${
-            withNotes ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'
+          className={`withNotes-button ${
+            withNotes ? 'withNotes-button:withNotes' : 'withNotes-button:hover'
           }`}
         >
           📝 With Notes
@@ -57,7 +57,7 @@ const FilterControls: React.FC = () => {
       <select
         value={sortBy}
         onChange={(e) => dispatch(setSortBy(e.target.value))}
-        className="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="dropdown"
       >
         <option value="default">Default</option>
         <option value="title-asc">Title (A-Z)</option>
