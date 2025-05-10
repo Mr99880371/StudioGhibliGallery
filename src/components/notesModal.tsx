@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setRating as setRatingRedux, setNote as setNoteRedux } from '../stores/movieInteraction';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { RootState } from '../stores';
 
 interface NotesModalProps {
   isOpen: boolean;
@@ -17,6 +19,24 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
   const [note, setNote] = useState('');
   const [error, setError] = useState('');
 
+  // Mantém o estado anterior salvo no modal
+  const savedRating = useSelector(
+    (state: RootState) => state.userMovies.interactions[movieId]?.rating || 0
+  );
+  
+  const savedNote = useSelector(
+    (state: RootState) => state.userMovies.interactions[movieId]?.notes || ''
+  );
+
+  // Inicializa o estado com os valores salvos
+  useEffect(() => {
+    if (isOpen) {
+      setRating(savedRating);
+      setNote(savedNote);
+    }
+  }, [savedRating, savedNote, isOpen]);
+
+  // Salva as notas e fecha o modal
   const handleSubmit = () => {
     const trimmedNote = note.trim();
 
@@ -53,6 +73,7 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
     onSave(rating, note);
   };
 
+  // Retorna null se o modal não estiver aberto
   if (!isOpen) return null;
 
   return (

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Interface para as interações do usuário
 interface MovieInteraction {
   id: string;
   watched: boolean;
@@ -8,14 +9,17 @@ interface MovieInteraction {
   notes: string;
 }
 
+// Interface para o estado do usuário
 interface UserMovieState {
   interactions: Record<string, MovieInteraction>;
 }
 
+// Estado inicial
 const initialState: UserMovieState = {
   interactions: {},
 };
 
+// Cria o slice
 const userMovieSlice = createSlice({
   name: "userMovies",
   initialState,
@@ -43,5 +47,8 @@ const userMovieSlice = createSlice({
   },
 });
 
+// Exporta as ações
 export const { toggleWatched, toggleFavorite, setNote, setRating } = userMovieSlice.actions;
+
+// Exporta o reducer
 export default userMovieSlice.reducer;

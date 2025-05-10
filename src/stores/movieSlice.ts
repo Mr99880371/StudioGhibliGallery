@@ -3,6 +3,7 @@ import { Movie, UserMovieState } from "../types";
 import { fetchMovies } from "../services/movieService";
 import { PayloadAction } from "@reduxjs/toolkit";
 
+// Interface para o estado do filme
 interface MovieState {
   movies: Movie[];
   userMovies: UserMovieState;
@@ -10,6 +11,7 @@ interface MovieState {
   error: string | null;
 }
 
+// Estado inicial
 const initialState: MovieState = {
   movies: [],
   userMovies: {},
@@ -17,10 +19,12 @@ const initialState: MovieState = {
   error: null,
 };
 
+// Cria o thunk
 export const getMovies = createAsyncThunk("movies/getMovies", async () => {
   return await fetchMovies();
 });
 
+// Cria o slice
 const movieSlice = createSlice({
   name: "movies",
   initialState,
@@ -55,6 +59,8 @@ const movieSlice = createSlice({
   },
 });
 
+// Exporta as ações
 export const { toggleWatched, toggleFavorite, addNote } = movieSlice.actions;
 
+// Exporta o reducer
 export default movieSlice.reducer;

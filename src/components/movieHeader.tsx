@@ -5,7 +5,9 @@ const MovieHeader: React.FC = () => {
   return (
     <header>
       <div className="flex flex-col items-center text-center">
-        <StudioIcon className="w-full max-w-[300px] h-auto" /> 
+        {/* Logo do site */}
+        <StudioIcon className="w-full max-w-[300px] h-auto" />
+        {/* Título */}
         <h1 className="font-nobel text-3xl mt-4">GALLERY</h1>
       </div>
 

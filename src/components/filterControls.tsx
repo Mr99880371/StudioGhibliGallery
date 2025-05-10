@@ -5,12 +5,14 @@ import {
   toggleWatched,
   toggleFavorites,
   toggleWithNotes,
-  setRating,
   setSortBy,
 } from '../stores/filterSlice';
+import RatingFilterDrop from './ratingFilterDrop';
 
 const FilterControls: React.FC = () => {
   const dispatch = useDispatch();
+
+  // Seleciona os filtros
   const { watched, favorites, withNotes, rating, sortBy } = useSelector(
     (state: RootState) => state.filters
   );
@@ -45,14 +47,9 @@ const FilterControls: React.FC = () => {
         >
           📝 With Notes
         </button>
-        <button
-          onClick={() => dispatch(setRating(rating === null ? 4 : null))}
-          className={`flex items-center gap-1 transition ${
-            rating !== null ? 'text-blue-600 font-semibold' : 'hover:text-blue-600'
-          }`}
-        >
-          ⭐ Rating
-        </button>
+        
+        {/* Dropdown de rating */}
+        <RatingFilterDrop />
       </div>
 
       {/* Dropdown de ordenação */}

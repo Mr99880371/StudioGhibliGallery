@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+// Interface para os filtros
 interface FilterState {
   watched: boolean;
   favorites: boolean;
@@ -10,6 +11,7 @@ interface FilterState {
   sortBy: string;
 }
 
+// Inicializa os filtros
 const initialState: FilterState = {
   watched: false,
   favorites: false,
@@ -20,6 +22,7 @@ const initialState: FilterState = {
   sortBy: 'default',
 };
 
+// Cria o slice
 const filterSlice = createSlice({
   name: "filters",
   initialState,
@@ -33,7 +36,7 @@ const filterSlice = createSlice({
     toggleWithNotes: (state) => {
       state.withNotes = !state.withNotes;
     },
-    setRating: (state, action: PayloadAction<number | null>) => {
+    setRatingFilter: (state, action: PayloadAction<number | null>) => {
       state.rating = action.payload;
     },
     setSearch: (state, action: PayloadAction<string>) => {
@@ -57,15 +60,17 @@ const filterSlice = createSlice({
   },
 });
 
+// Exporta as ações
 export const {
   toggleWatched,
   toggleFavorites,
   toggleWithNotes,
-  setRating,
+  setRatingFilter, 
   setSearch,
   toggleIncludeSynopsis,
   setSortBy,
   clearFilters,
 } = filterSlice.actions;
 
+// Exporta o reducer
 export default filterSlice.reducer;
