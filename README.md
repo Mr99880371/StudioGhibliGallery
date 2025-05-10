@@ -113,4 +113,4 @@ Mariane A Justino
 
 GitHub: https://github.com/Mr99880371
 
-LinkedIn: https://www.linkedin.com/in/mariane-justino/
+LinkedIn: https://www.linkedin.com/in/marianearaujodeveloper
