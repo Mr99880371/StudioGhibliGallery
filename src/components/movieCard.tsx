@@ -118,7 +118,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
   
     return parts.map((part, index) =>
       part.toLowerCase() === keyword.toLowerCase() ? (
-        <span key={index} className="bg-yellow-200 font-semibold">{part}</span>
+        <span key={index} className="highlight-text">{part}</span>
       ) : (
         <React.Fragment key={index}>{part}</React.Fragment>
       )
@@ -126,7 +126,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
   };
 
   return (
-    <div className={`p-4 bg-white rounded-lg shadow-lg flex flex-col text-left ${interaction?.rating === 5 ? 'bg-yellow-50' : 'bg-white'}`}>
+    <div className={`movie-card-container ${interaction?.rating === 5 ? 'bg-highlight' : ''}`}>  
       {/* Modal de notas e comentários */}
       {showNotesModal && (
          <NotesModal
@@ -145,12 +145,12 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
       <div className="relative mb-4 overflow-hidden rounded-md group">
         
         {typeof interaction?.rating === "number" && interaction.rating > 0 && (
-          <div className="absolute top-2 left-2 z-10 flex flex-col gap-1">
+          <div className="movie-note-poster">
             {interaction.notes && (
-              <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded">💬 Notes</span>
+              <span className="movie-note-poster-span">💬 Notes</span>
             )}
             {interaction.rating > 0 && (
-              <span className="bg-yellow-300 text-gray-800 text-xs px-2 py-0.5 rounded">
+              <span className="movie-rating-poster-span">
                 ⭐ {interaction.rating}/5
               </span>
             )}
@@ -160,23 +160,23 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="movie-poster-full"
         />
         <div className={`absolute inset-0 ${interaction?.rating === 5 ? 'bg-yellow-300' : 'bg-black'} bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300`}>
-          <p className="text-white font-medium text-lg px-2 text-center">{title}</p>
+          <p className="movie-poster-title-container-p">{title}</p>
         </div>
        </div>
 
       {/* Título, ano e duração */}
-      <h2 className="text-lg font-semibold text-gray-900">{title}</h2>
-      <p className="text-sm text-gray-500 mt-1">{release_date} • {running_time}m</p>
+      <h2 className="movie-title-p">{title}</h2>
+      <p className="movie-release-date-p">{release_date} • {running_time}m</p>
 
       {/* Nota */}
-      <div className="flex items-center text-sm mt-2 mb-2">
+      <div className="movie-rating-container">
         <span className="text-yellow-500 mr-1">⭐</span>
         <span className="font-medium text-gray-800">{rt_score}%</span>
         <span className="text-xs text-gray-400 ml-auto">{interaction.rating > 0 ? (
-          <span className="text-xs px-2 py-0.5 rounded bg-yellow-100 text-yellow-600">
+          <span className="movie-rating-container-span">
             {"★".repeat(interaction.rating)}
             {"☆".repeat(5 - interaction.rating)}
           </span>
@@ -211,44 +211,44 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
 
       {/* Notas do usuário */}
       {interaction?.notes && interaction.notes.trim() !== '' && (
-          <div className="mt-2 mb-2 bg-blue-50 p-3 rounded text-sm text-gray-800 relative">
+          <div className="movie-user-rating">
           <div className="flex justify-between items-start mb-1">
             <p className="font-medium">Your Notes:</p>
             <button
               onClick={() => {
                 handleRemoveNoteAndRating();
               }}
-              className="text-blue-400 hover:text-blue-700 text-xs font-bold ml-2"
+              className="movie-user-rating-button"
               title="Remove note and rating"
             >
               ✖
             </button>
           </div>
-          <p className="italic text-gray-600">{interaction.notes}</p>
+          <p className="movie-user-rating-p">{interaction.notes}</p>
         </div>
       )}
 
       {/* Ações */}
       <div className="flex flex-col gap-2 mt-auto">
       <button
-          className={`border rounded-lg py-2 text-sm flex items-center justify-center gap-2 ${
-            interaction?.watched ? 'bg-gray-900 text-white' : 'border-gray-300'
+          className={`action-button ${
+            interaction?.watched ? 'watched' : ''
           }`}
           onClick={() => handleToggleWatched()}
         >
           👁 {interaction?.watched ? 'Watched' : 'Mark Watched'}
         </button>
         <button
-          className={`border rounded-lg py-2 text-sm flex items-center justify-center gap-2 ${
-            interaction?.favorite ? 'bg-red-600 text-white' : 'border-gray-300'
+          className={`action-button ${
+            interaction?.favorite ? 'favorite' : ''
           }`}
           onClick={() => handleToggleFavorite()}
         >
           {interaction?.favorite ? '🤍 Favorited' : '❤️ Add Favorite'}
         </button>
         <button
-          className={`border rounded-lg py-2 text-sm flex items-center justify-center gap-2 ${
-            interaction?.notes ? 'bg-blue-100 text-blue-800 font-semibold' : 'border-gray-300'
+          className={`action-button ${
+            interaction?.notes ? 'notes' : ''
           }`}
           onClick={() => handleOpenNotesModal()}
         >

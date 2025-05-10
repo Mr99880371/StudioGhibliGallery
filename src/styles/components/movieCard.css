@@ -1,37 +1,81 @@
 /* === Movie Card Styles === */
 .movie-card-container {
     @apply p-4 bg-white rounded-lg shadow-lg flex flex-col text-left;
-}
-
-.movie-note-poster {
+  }
+  
+  .bg-highlight {
+    @apply bg-yellow-50;
+  }
+  
+  .movie-note-poster {
     @apply absolute top-2 left-2 z-10 flex flex-col gap-1;
-}
-
-.movie-note-poster-span {
+  }
+  
+  .movie-note-poster-span {
     @apply bg-blue-600 text-white text-xs px-2 py-0.5 rounded;
-}
-
-.movie-rating-poster-span {
+  }
+  
+  .movie-rating-poster-span {
     @apply bg-yellow-300 text-gray-800 text-xs px-2 py-0.5 rounded;
-}
-
-.movie-poster-full {
-    @apply w-full h-full object-cover transition-transform duration-300;
-}
-
-.movie-poster-full:hover {
-    @apply group-hover:scale-105;
-}
-
-.movie-poster-title-container {
-    @apply absolute inset-0 bg-black bg-opacity-60 opacity-0 flex items-center justify-center transition-opacity duration-300;
-}
-
-.movie-poster-title-container:hover {
-    @apply group-hover:opacity-100;
-}
-
-.movie-poster-title-container-p {
+  }
+  
+  .movie-poster-full {
+    @apply w-full h-full object-cover transition-transform duration-300 group-hover:scale-105;
+  }
+  
+  .movie-poster-title-container {
+    @apply absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300;
+  }
+  
+  .movie-poster-title-container-p {
     @apply text-white font-medium text-lg px-2 text-center;
-}
-    
+  }
+
+  .movie-title-p {
+    @apply text-lg font-semibold text-gray-900;
+  }
+
+  .movie-release-date-p {
+    @apply text-sm text-gray-500 mt-1;
+  }
+
+  .movie-rating-container {
+    @apply flex items-center text-sm mt-2 mb-2;
+  }
+
+  .movie-rating-container-span {
+    @apply text-xs px-2 py-0.5 rounded bg-yellow-100 text-yellow-600;
+  }
+
+  .movie-user-rating{
+    @apply mt-2 mb-2 bg-blue-50 p-3 rounded text-sm text-gray-800 relative;
+  }
+
+  .movie-user-rating-button {
+    @apply text-blue-400 hover:text-blue-700 text-xs font-bold ml-2;
+  }
+
+  .movie-user-rating-p {
+    @apply italic text-gray-600;
+  }
+  
+  .highlight-text {
+    @apply bg-yellow-200 font-semibold;
+  }
+  
+  .action-button {
+    @apply border rounded-lg py-2 text-sm flex items-center justify-center gap-2 border-gray-300;
+  }
+  
+  .action-button.watched {
+    @apply bg-gray-900 text-white;
+  }
+  
+  .action-button.favorite {
+    @apply bg-red-600 text-white;
+  }
+  
+  .action-button.notes {
+    @apply bg-blue-100 text-blue-800 font-semibold;
+  }
+  
