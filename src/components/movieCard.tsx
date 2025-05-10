@@ -100,6 +100,12 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
     }
   };
 
+  /* Função para remover notas e avaliações - dispara Toast */
+  const handleRemoveNoteAndRating = () => {
+    handleAddNote(0, "");
+    dispatch(setRating({ id: movie.id, rating: 0 }));
+  };
+
   /* Função para expandir/colapsar a sinopse */
   const handleToggleDescription = () => setExpanded(prev => !prev);
 
@@ -210,8 +216,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
             <p className="font-medium">Your Notes:</p>
             <button
               onClick={() => {
-                dispatch(setNote({ id: movie.id, notes: "" }));
-                dispatch(setRating({ id: movie.id, rating: 0 }));
+                handleRemoveNoteAndRating();
               }}
               className="text-blue-400 hover:text-blue-700 text-xs font-bold ml-2"
               title="Remove note and rating"

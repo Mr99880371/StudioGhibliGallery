@@ -56,6 +56,15 @@ const RatingFilterDrop: React.FC = () => {
                 Unrated
               </button>
             </li>
+            {/* Opção para filmes com qualquer nota */}
+            <li>
+              <button
+                onClick={() => handleSelect(-1)}
+                className="rating-filter-drop-container-dropdown-div-ul-li-button"
+              >
+                Any Rating
+              </button>
+            </li>
             {/* Opções de rating */}
             {[5, 4, 3, 2, 1].map((star) => (
               <li key={star}>

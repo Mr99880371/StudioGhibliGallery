@@ -19,7 +19,7 @@ const initialState: UserMovieState = {
   interactions: {},
 };
 
-// Cria o slice
+// reducers controla ações do usuário sobre os filmes
 const userMovieSlice = createSlice({
   name: "userMovies",
   initialState,

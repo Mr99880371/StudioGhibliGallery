@@ -10,10 +10,10 @@ interface NotesModalProps {
   onClose: () => void;
   movieId: string;
   movieTitle: string;
-  onSave: (rating: number, note: string) => void;
+  onSave?: (rating: number, note: string) => void;
 }
 
-const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movieTitle, onSave }) => {
+const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movieTitle }) => {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(0);
   const [note, setNote] = useState('');
@@ -39,16 +39,19 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
   // Salva as notas e fecha o modal
   const handleSubmit = () => {
     const trimmedNote = note.trim();
+    const trimmedSavedNote = savedNote.trim();
   
-    const noteChanged = trimmedNote !== savedNote.trim();
+    const noteChanged = trimmedNote !== trimmedSavedNote;
     const ratingChanged = rating !== savedRating;
   
+    const isNewNote = !trimmedSavedNote && !!trimmedNote;
+    const isEditedNote = trimmedSavedNote && trimmedNote && noteChanged;
+  
     if (!trimmedNote && rating === 0) {
-      setError('Please provide a rating or note.');
+      setError("Please provide a rating or note.");
       return;
     }
   
-    // Se nada foi alterado, não faz nada
     if (!noteChanged && !ratingChanged) {
       onClose();
       return;
@@ -57,30 +60,39 @@ const NotesModal: React.FC<NotesModalProps> = ({ isOpen, onClose, movieId, movie
     dispatch(setNoteRedux({ id: movieId, notes: trimmedNote }));
     dispatch(setRatingRedux({ id: movieId, rating }));
   
-    // Só exibe o toast se algo tiver sido alterado
+    // Decide qual mensagem mostrar
+    let title = "";
+    let borderColor = "";
+  
+    if (isNewNote) {
+      title = "📝 Note added";
+      borderColor = "#3b82f6"; // azul
+    } else if (isEditedNote) {
+      title = "✏️ Note updated";
+      borderColor = "#3b82f6"; // azul
+    } else if (ratingChanged) {
+      title = "⭐ Rating saved";
+      borderColor = "#facc15"; // amarelo
+    }
+  
     toast(
       <div>
-        <p className="font-semibold">
-          {noteChanged
-            ? (ratingChanged ? '📝 Note and Rating saved' : '📝 Note saved')
-            : '⭐ Rating saved'}
-        </p>
+        <p className="font-semibold">{title}</p>
         <p className="notes-modal-movie-upd-toast">{movieTitle} has been updated</p>
       </div>,
       {
         style: {
-          borderLeft: `4px solid ${noteChanged ? '#3b82f6' : '#facc15'}`, // azul para nota, amarelo para só rating
-          backgroundColor: '#fff',
+          borderLeft: `4px solid ${borderColor}`,
+          backgroundColor: "#fff",
         },
       }
     );
   
     // Limpa e fecha
     setRating(0);
-    setNote('');
-    setError('');
+    setNote("");
+    setError("");
     onClose();
-    onSave(rating, note);
   };
 
   // Retorna null se o modal não estiver aberto

@@ -7,9 +7,9 @@ import filterReducer from "./filterSlice";
 
 // Combina os reducers
 const rootReducer = combineReducers({
-  movies: movieReducer,
-  userMovies: userMovieReducer,
-  filters: filterReducer,
+  movies: movieReducer, // Dados dos filmes (API)
+  userMovies: userMovieReducer, // Interações do usuário
+  filters: filterReducer, // Filtros
 });
 
 // Configuração de persistência

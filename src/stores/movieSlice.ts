@@ -1,12 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Movie, UserMovieState } from "../types";
+import { Movie } from "../types";
 import { fetchMovies } from "../services/movieService";
-import { PayloadAction } from "@reduxjs/toolkit";
 
-// Interface para o estado do filme
+// Interface para o estado do slice
 interface MovieState {
   movies: Movie[];
-  userMovies: UserMovieState;
   loading: boolean;
   error: string | null;
 }
@@ -14,34 +12,20 @@ interface MovieState {
 // Estado inicial
 const initialState: MovieState = {
   movies: [],
-  userMovies: {},
   loading: false,
   error: null,
 };
 
-// Cria o thunk
+// Thunk para buscar filmes
 export const getMovies = createAsyncThunk("movies/getMovies", async () => {
   return await fetchMovies();
 });
 
-// Cria o slice
+// Apenas para dados dos filmes (catálogo e carregamento)
 const movieSlice = createSlice({
   name: "movies",
   initialState,
-  reducers: {
-    toggleWatched: (state, action: PayloadAction<string>) => {
-      const movie = state.movies.find(m => m.id === action.payload);
-      if (movie) state.userMovies[movie.id].watched = !state.userMovies[movie.id].watched;
-    },
-    toggleFavorite: (state, action: PayloadAction<string>) => {
-      const movie = state.movies.find(m => m.id === action.payload);
-      if (movie) state.userMovies[movie.id].favorite = !state.userMovies[movie.id].favorite;
-    },
-    addNote: (state, action: PayloadAction<{ id: string; note: string }>) => {
-      const movie = state.movies.find(m => m.id === action.payload.id);
-      if (movie) state.userMovies[movie.id].notes = action.payload.note;
-    }
-  },
+  reducers: { },
   extraReducers: (builder) => {
     builder
       .addCase(getMovies.pending, (state) => {
@@ -59,8 +43,4 @@ const movieSlice = createSlice({
   },
 });
 
-// Exporta as ações
-export const { toggleWatched, toggleFavorite, addNote } = movieSlice.actions;
-
-// Exporta o reducer
 export default movieSlice.reducer;

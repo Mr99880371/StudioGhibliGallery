@@ -22,7 +22,7 @@ const initialState: FilterState = {
   sortBy: 'default',
 };
 
-// Cria o slice
+// Cria o slice dos filtros
 const filterSlice = createSlice({
   name: "filters",
   initialState,

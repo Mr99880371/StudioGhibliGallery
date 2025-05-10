@@ -6,7 +6,14 @@ import { RootState } from '../stores/index';
 import MovieCard from '../components/movieCard';
 import FilterControls from '../components/filterControls';
 import SearchBar from '../components/searchBar';
-import { clearFilters, setFavorites, setRatingFilter, setSortBy, setWatched, setWithNotes } from '../stores/filterSlice';
+import { 
+  clearFilters, 
+  setFavorites, 
+  setRatingFilter, 
+  setSortBy, 
+  setWatched, 
+  setWithNotes 
+} from '../stores/filterSlice';
 
 const Gallery: React.FC = () => {
   const dispatch = useDispatch();
@@ -25,7 +32,11 @@ const Gallery: React.FC = () => {
   // Mostra os filtros ativos na tela
   const activateFilters = () => {
     return (      
-      filters.watched || filters.favorites || filters.withNotes || filters.rating !== null || sortBy !== 'default') && (
+      filters.watched || 
+      filters.favorites || 
+      filters.withNotes || 
+      filters.rating !== null || 
+      sortBy !== 'default') && (
         <div className="active-filters">
           <span className="font-semibold">Active filters:</span>
   
@@ -45,7 +56,7 @@ const Gallery: React.FC = () => {
         {/* Rating */}
         {filters.rating !== null && (
           <span className="tag tag-blue">
-            Rating: {filters.rating === 0 ? 'Unrated' : `${filters.rating} Stars`}
+            Rating: {filters.rating === -1 ? 'Any Rating' : filters.rating === 0 ? 'Unrated' : `${filters.rating} Stars`}
             <button
               className="ml-1 tag-button tag-button-blue"
               onClick={() => dispatch(setRatingFilter(null))}
@@ -108,16 +119,18 @@ const Gallery: React.FC = () => {
     const matchWatched = !filters.watched || userData.watched;
     const matchFavorite = !filters.favorites || userData.favorite;
     const matchNotes = !filters.withNotes || !!userData.notes;
-    const matchesRating =
-    ratingFilter === null
-      ? true
-      : ratingFilter === 0
-      ? !userData?.rating
-      : userData?.rating === ratingFilter;
+
+    const matchesRating = (() => {
+      if (ratingFilter === null) return true;
+      if (ratingFilter === 0) return userData?.rating == null;
+      if (ratingFilter === -1) return userData?.rating != null;
+      return userData?.rating === ratingFilter;
+    })();
 
     const matchSearch =
       movie.title.toLowerCase().includes(filters.search.toLowerCase()) ||
-      (filters.includeSynopsis && movie.description.toLowerCase().includes(filters.search.toLowerCase()));
+      (filters.includeSynopsis &&
+        movie.description.toLowerCase().includes(filters.search.toLowerCase()));
 
     return matchWatched && matchFavorite && matchNotes && matchesRating && matchSearch;
   })
@@ -180,7 +193,12 @@ const Gallery: React.FC = () => {
     </div>
 
     {/* Clear All */}
-    {(filters.watched || filters.favorites || filters.withNotes || filters.rating !== null || sortBy !== 'default' || filters.search.trim() !== '') && (
+    {(filters.watched ||
+      filters.favorites ||
+      filters.withNotes ||
+      filters.rating !== null ||
+      sortBy !== 'default' ||
+      filters.search.trim() !== '') && (
       <div className="clear-button-container">
         <button
           className="clear-button"
@@ -197,13 +215,36 @@ const Gallery: React.FC = () => {
     {activateFilters()}
 
     {/* Grade de filmes */}
-    <div className="grid-films">
-      {filteredMovies.map((movie) => (
-        <div key={movie.id}>
-          <MovieCard movie={movie} />
-        </div>
-      ))}
-    </div>
+    {filteredMovies.length > 0 ? (
+      <div className="grid-films">
+        {filteredMovies.map((movie) => (
+          <div key={movie.id}>
+            <MovieCard movie={movie} />
+          </div>
+        ))}
+      </div>
+    ) : (
+      <div className="flex flex-col items-center justify-center h-[60vh] text-gray-500 text-lg text-center">
+        <p>🔍 Nenhum resultado encontrado com os filtros atuais.</p>
+        {(filters.watched ||
+      filters.favorites ||
+      filters.withNotes ||
+      filters.rating !== null ||
+      sortBy !== 'default' ||
+      filters.search.trim() !== '') && (
+      <div className="flex flex-col items-center justify-center">
+        <button
+          className="border border-gray-300 bg-gray-100 hover:bg-gray-200 mt-2 rounded-md p-2 text-sm font-regular"
+          onClick={() => {
+            dispatch(clearFilters());
+          }}
+        >
+          Clear All Filters
+        </button>
+      </div>
+    )}
+      </div>
+    )}
   </div>
   );
 };
