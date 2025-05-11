@@ -122,8 +122,14 @@ const Gallery: React.FC = () => {
 
     const matchesRating = (() => {
       if (ratingFilter === null) return true;
-      if (ratingFilter === 0) return userData?.rating == null;
-      if (ratingFilter === -1) return userData?.rating != null;
+      if (ratingFilter === 0) {
+        // Sem nota: rating é null, undefined ou 0
+        return userData?.rating == null || userData?.rating === 0;
+      }
+      if (ratingFilter === -1) {
+        // "Any rating": apenas ratings válidos (1 a 5)
+        return typeof userData?.rating === 'number' && userData.rating >= 1 && userData.rating <= 5;
+      }
       return userData?.rating === ratingFilter;
     })();
 
